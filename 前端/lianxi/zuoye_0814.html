@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title></title>
+    <meta name="Author" content="shuke">
+    <meta name="Keywords" content="">
+    <meta name="Description" content="">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <link rel="stylesheet" href="../ext.css">
+    <script src="../ext_test.js"></script>
+    <style>
+
+    </style>
+</head>
+<body>
+<table border="1" width="500" height="300" cellspacing="0" id="myTable">
+    <tr>
+        <td>11</td><td>12</td><td>13</td><td>14</td><td>15</td>
+    </tr>
+    <tr>
+        <td>21</td><td>22</td><td>23</td><td>24</td><td>25</td>
+    </tr>
+    <tr>
+        <td>31</td><td>32</td><td>33</td><td>34</td><td>35</td>
+    </tr>
+    <tr>
+        <td>41</td><td>42</td><td>43</td><td>44</td><td>45</td>
+    </tr>
+    <input type="button" value="删除最后一行" name="deleteTr" onclick="deleteTr()">
+    <input type="button" value="删除最后一列" name="deleteTd" onclick="deleteTd()">
+    <input type="button" value="删除最后一单元格" name="deleteTne" onclick="deleteCell()">
+</table>
+</body>
+</html>
+<script>
+    function deleteTr() {
+        var tab=document.getElementById("myTable");
+        tab.deleteRow(tab.rows.length-1);
+    }
+    function deleteTd() {
+        var tab=document.getElementById("myTable");
+        for(var j=0;j<4;j++){
+            var everyRow=tab.rows[j]
+            everyRow.deleteCell(everyRow.cells.length-1)
+        }
+    }
+    function deleteCell() {
+        var tab=document.getElementById("myTable");
+        var lastRow=tab.rows[tab.rows.length-1];
+        if(tab.rows[tab.rows.length-1].cells.length==1){
+            tab.deleteRow(tab.rows.length-1);
+        }
+        // if(tab.rows[tab.rows.length-1].cells.length==0){
+        //     lastRow=tab.rows[tab.rows.length-2];
+        // }
+        // if(tab.rows[tab.rows.length-2].cells.length==0){
+        //     lastRow=tab.rows[tab.rows.length-3];
+        // }
+        // if(tab.rows[tab.rows.length-3].cells.length==0){
+        //     lastRow=tab.rows[tab.rows.length-4];
+        // }
+        lastRow.deleteCell(lastRow.cells.length-1);
+    }
+</script>

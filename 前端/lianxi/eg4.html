@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title></title>
+    <meta name="Author" content="shuke">
+    <meta name="Keywords" content="">
+    <meta name="Description" content="">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <link rel="stylesheet" href="../ext.css">
+    <script src="../ext_test.js"></script>
+</head>
+<body>
+
+</body>
+</html>
+<script>
+    var transpose = function(A) {
+        var a=[];
+        for(var i=0;i<A[0].length;i++){
+            var temp=[];
+            for(var j=0;j<A.length;j++){
+                temp.push(A[j][i]);
+            }
+            a.push(temp);
+        }
+        return a;
+    };
+    var result=transpose([[1,2,3,5],[4,5,6,5],[7,8,9,4]]);
+    console.log(result)
+</script>

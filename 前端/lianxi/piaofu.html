@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>漂浮广告</title>
+    <meta name="Author" content="shuke">
+    <meta name="Keywords" content="">
+    <meta name="Description" content="">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <link rel="stylesheet" href="../ext.css">
+    <script src="../ext_test.js"></script>
+    <script src="../jquery-3.3.1.min.js"></script>
+</head>
+<body>
+<div id="imgDiv" style="position: absolute;top: 50px;left: 60px">
+    <img src="images/2.jpg">
+</div>
+</body>
+</html>
+<script>
+
+    var xin=true,yin=true;//标记xin=true往右移动，false往左
+    var step=1;//移动步伐
+    var delay=5;//时间间隔
+    var $obj;
+    function move() {
+        var left=$obj.offset().left;
+        var top=$obj.offset().top;
+        var L=T=0;
+        var R=$(window).width()-$obj.width();
+        var B=$(window).height()-$obj.height();
+        //水平方向判断
+        if (left<L){xin=true}
+        if (left>R){xin=false}
+        left=left+step*(xin?1:-1);
+        //垂直方向判断
+        if (top<T){yin=true}
+        if (top>B){yin=false}
+        top=top+step*(yin?1:-1);
+        $obj.offset({top:top,left:left})
+    }
+    $(function () {
+        $obj=$("#imgDiv");
+        var itl=setInterval("move()",delay);
+        $obj.mouseover(function () {
+            clearInterval(itl);
+        })
+        $obj.mouseout(function () {
+            itl=setInterval("move()",delay);
+        })
+
+    })
+
+
+</script>

@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title></title>
+    <meta name="Author" content="shuke">
+    <meta name="Keywords" content="">
+    <meta name="Description" content="">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <link rel="stylesheet" href="../ext.css">
+    <script src="../ext_test.js"></script>
+    <script src="../jquery-3.3.1.min.js"></script>
+    <style>
+        body{
+            margin: 0px;
+            padding: 0px;
+        }
+        #myCanvas{
+            border: 1px solid #9c9898;
+            background-color: #77ffcc;
+        }
+    </style>
+</head>
+<body>
+<canvas id="myCanvas" width="578" height="220"></canvas>
+</body>
+</html>
+<script>
+
+    window.onload=function () {
+        var canvas=document.getElementById("myCanvas");
+        var context=canvas.getContext("2d");
+        //线性渐变
+        var clg=context.createLinearGradient(0,0,0,200);
+        clg.addColorStop(0,"#ff0000");
+        clg.addColorStop(0.5,"#00ff00");
+        clg.addColorStop(1,"#0000ff");
+        context.fillStyle=clg;
+        context.strokeStyle=clg;
+        context.fillRect(10,10,200,200);
+        //径向渐变
+        var crg=context.createRadialGradient(325,100,20,325,100,80);
+        crg.addColorStop(0,"#ffffff");
+        crg.addColorStop(0.75,"#ff0000");
+        crg.addColorStop(1,"#000000");
+        context.fillStyle=crg;
+        context.fillRect(230,10,200,200)
+    }
+</script>

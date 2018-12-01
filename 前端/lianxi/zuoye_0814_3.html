@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title></title>
+    <meta name="Author" content="shuke">
+    <meta name="Keywords" content="">
+    <meta name="Description" content="">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <link rel="stylesheet" href="../ext.css">
+    <script src="../ext_test.js"></script>
+    <script src="../jquery-3.3.1.min.js"></script>
+</head>
+<body>
+<table id="sktable" class="table table-bordered"></table>
+</body>
+</html>
+<script>
+//设计一个产品数据
+    var prolist=[
+        {pname:"防滑真皮休闲鞋",pnum:12,pmoney:"568.50"},
+        {pname:"抗疲劳神奇钛项圈",pnum:2,pmoney:"49.50"},
+        {pname:"抗疲劳神奇钛项圈1",pnum:15,pmoney:"49.50"},
+        {pname:"抗疲劳神奇钛项圈2",pnum:4,pmoney:"49.50"}
+    ]
+    // console.log(prolist.length)
+    //初始化表格
+    var ocols=4;//4列
+    var otable=$$("#sktable");
+    //初始化表格操作
+    function inittable(){
+        otable.innerHTML="<tr><th>商品名称</th><th>数量</th><th>价格</th><th>操作</th></tr>"
+        for(var i=0;i<prolist.length;i++){
+            otable.innerHTML+="<tr><td>"+prolist[i].pname+"</td><td><span class='sknum'>"+prolist[i].pnum+"</span><span><input type='hidden' class='sknum2' size='4' value='"+prolist[i].pnum+"'></span></td><td>"+prolist[i].pmoney+"</td><td><button onclick='shanchu("+i+ ")'>删除</button><button class='skxiugai' onclick='xiugai("+i+ ")' >修改</button></td></tr>"
+        }
+        otable.innerHTML+="<tr><td colspan='4'><button onclick='zengjia()'>添加订单</button></td></tr>"
+    }
+    inittable();
+
+    function xiugai(index){
+        // console.log(index)
+        var osknum=otable.getElementsByClassName("sknum")
+        var osknum2=otable.getElementsByClassName("sknum2")
+        var oskxg=otable.getElementsByClassName("skxiugai")
+        if(osknum2[index].type=="hidden"){
+            osknum[index].innerHTML=""
+            osknum2[index].type="text"
+            oskxg[index].innerHTML="提交"
+        }else{
+            osknum2[index].type="hidden"
+            osknum[index].innerHTML=osknum2[index].value
+            oskxg[index].innerHTML="修改"
+        }
+        prolist[index].pnum=osknum2[index].value
+
+    }
+    function shanchu(num) {
+        prolist.splice(num,1)
+        inittable();
+    }
+    function zengjia() {
+        var prodata={pname:"人工智能",pnum:5,pmoney:"49000.50"}
+        prolist.push(prodata)
+        inittable();//重新渲染表格
+
+    }
+
+</script>

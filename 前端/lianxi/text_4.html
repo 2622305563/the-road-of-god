@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title></title>
+    <meta name="Author" content="shuke">
+    <meta name="Keywords" content="">
+    <meta name="Description" content="">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <link rel="stylesheet" href="../ext.css">
+</head>
+<body>
+<table id="mytable">
+    <tr><td>11</td><td>12</td><td>13</td><td>14</td></tr>
+    <tr><td>21</td><td>22</td><td>23</td><td>24</td></tr>
+    <tr><td>31</td><td>32</td><td>33</td><td>34</td></tr>
+    <tr><td>41</td><td>42</td><td>43</td><td>44</td></tr>
+    <button type="button" onclick="fun1()">删除最后一行</button>
+    <button type="button" onclick="fun2()">删除最后一列</button>
+    <button type="button" onclick="fun3()">删除最后一个单元格</button>
+</table>
+</body>
+</html>
+<script>
+    var tab=document.getElementById("mytable");
+    var num=tab.rows.length;
+    function fun1(){
+        num--;
+        tab.rows[num].innerHTML=null;
+    }
+    var lie=tab.rows[0].cells.length;
+    function fun2(){
+        lie--;
+        for(var i=0;i<4;i++){
+        // alert(lie)
+        tab.rows[i].cells[lie].innerHTML=null;
+        }
+    }
+    var i=num;
+    var j=lie-1;
+    function fun3(){
+        i--;
+        tab.rows[j].cells[i].innerHTML=null;
+        if(i==0){
+            i=4;
+            j--;
+        }
+    }
+</script>

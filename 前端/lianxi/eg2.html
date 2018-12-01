@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title></title>
+    <meta name="Author" content="shuke">
+    <meta name="Keywords" content="">
+    <meta name="Description" content="">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <link rel="stylesheet" href="../ext.css">
+    <script src="../ext_test.js"></script>
+</head>
+<body>
+<div class="container">
+    <dl>
+        <dt>
+
+            <input type="text" id="inp1" value="1">
+            <input type="text" id="inp2" value="1">
+            <button id="inserts" class="sss">增加</button>
+        </dt>
+        <dd>
+            <table id="mytable"></table>
+        </dd>
+    </dl>
+</div>
+</body>
+</html>
+<script>
+    var omytable=$$("#mytable");
+    omytable.className="table table-bordered";
+    var oinserts=$$("#inserts");
+    var inp1=$$("#inp1").value;
+    var inp2=$$("#inp2").value;
+    oinserts.onclick=function (ee) {
+        omytable.innerHTML = "";
+        inp1 = $$("#inp1").value;
+        inp2 = $$("#inp2").value;
+        // for(var j=0;j<inp1;j++){
+        //     var tr=omytable.insertRow();
+        //     // tr.innerHTML="nihao";
+        //     for(var i=0;i<inp2;i++){
+        //         var td=tr.insertCell();
+        //         td.innerHTML=j+1+"行"+(i+1)+"列"
+        //     }
+        // }
+        newtable("#mytable",inp1,inp2)
+    }
+            function newtable(tid,rows,cols) {
+                var omytable=$$(tid);
+                omytable.inner="";
+                for(var j=0;j<rows;j++){
+                    var tr=omytable.insertRow();
+                    // tr.innerHTML="nihao";
+                    for(var i=0;i<cols;i++){
+                        var td=tr.insertCell();
+                        td.innerHTML=j+1+"行"+(i+1)+"列"
+                    }
+                }
+            }
+
+        // tr.innerHTML="增加了一行"
+
+</script>

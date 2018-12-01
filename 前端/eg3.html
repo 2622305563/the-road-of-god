@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="zh-cn">
+<head>
+    <meta charset="UTF-8">
+    <title>jquery ajax</title>
+    <meta name="Author" content="shuke">
+    <meta name="Keywords" content="">
+    <meta name="Description" content="">
+    <link rel="stylesheet" href="../../source/css/ext.css">
+</head>
+<body>
+<div class="container">
+    <dl class="padding">
+        <dt>jquery ajax</dt>
+        <dd></dd>
+    </dl>
+</div>
+</body>
+</html>
+<script src="../../source/js/jquery.js"></script>
+<script>
+    // $.ajax({
+    //     url:"http://www.coolneng.com/form/?skname=shuke",
+    //     success:function (res) {
+    //         console.log(res)
+    //     }
+    // })
+    $.get("http://www.coolneng.com/form/?skname=shuke",function (res, status) {
+        console.log(res,status)
+    })
+</script>

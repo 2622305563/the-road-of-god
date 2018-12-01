@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title></title>
+    <meta name="Author" content="shuke">
+    <meta name="Keywords" content="">
+    <meta name="Description" content="">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <link rel="stylesheet" href="../ext.css">
+    <script src="../ext_test.js"></script>
+</head>
+<body>
+
+</body>
+</html>
+<script>
+    var flipAndInvertImage = function(A) {
+        for(var j=0;j<A.length;j++){
+            var f=A[j].length-1;
+            var temp=[];
+            for(var i=0;i<A[j].length;i++){
+                console.log('11111',A[j]);
+                if(A[j][i]==0){
+                    A[j][i]=1;
+                }else{
+                    A[j][i]=0;
+                }
+                console.log('j = ',j);
+                console.log(A[j]);
+                temp[f]=A[j][i];
+                f--;
+            }
+            console.log('TEMP =',temp);
+            console.log('before exchange A = ',A);
+            A[j]=temp;
+            console.log('after exchange A = ',A);
+        }
+        return A;
+    };
+    var result =  flipAndInvertImage([[0,1,1],[1,0,1],[0,0,1]]);
+    console.log('result = ',result);
+</script>

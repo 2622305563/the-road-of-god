@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title></title>
+    <meta name="Author" content="shuke">
+    <meta name="Keywords" content="">
+    <meta name="Description" content="">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <link rel="stylesheet" href="../ext.css">
+    <script src="../ext_test.js"></script>
+</head>
+<body>
+
+<div id="timer"></div>
+</body>
+</html>
+<script>
+
+    function downtime(year,month,day,hour,minute,second) {
+        var sumsecond=(new Date(year,month-1,day,hour,minute,second))-new Date();
+        var downdays=parseInt(sumsecond/1000/60/60/24,10);
+        var downhours=parseInt(sumsecond/1000/60/60%24,10);
+        var downminutes=parseInt(sumsecond/1000/60%60,10);
+        var downseconds=parseInt(sumsecond/1000%60,10);
+        downdays=checktime(downdays);
+        downhours=checktime(downhours);
+        downminutes=checktime(downminutes);
+        downseconds=checktime(downseconds);
+        document.getElementById("timer").innerHTML="距离2020年10月1日还剩："+downdays+"天"+downhours+"小时"+downminutes+"分钟"+downseconds+"秒"
+
+    }
+    setInterval("downtime(2020,10,1,0,0,0)",1000);
+    function checktime(i) {
+        if(i<10){
+            i="0"+i;
+        }
+        return i;
+    }
+</script>

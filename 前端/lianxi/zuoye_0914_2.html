@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title></title>
+    <meta name="Author" content="shuke">
+    <meta name="Keywords" content="">
+    <meta name="Description" content="">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <link rel="stylesheet" href="../ext.css">
+    <script src="../ext_test.js"></script>
+    <script src="../jquery-3.3.1.min.js"></script>
+</head>
+<body>
+<table class="table table-bordered" id="mytable">
+    <tr>
+        <th>序号</th><th>订单号</th><th>商品名称</th><th>价格</th>
+    </tr>
+    <tr>
+        <td>1</td><td>10045900</td><td>Niket透气减震运动鞋</td><td>299元</td>
+    </tr>
+    <tr>
+        <td>1</td><td>10045900</td><td>Niket透气减震运动鞋</td><td>299元</td>
+    </tr>
+    <tr>
+        <td>1</td><td>10045900</td><td>Niket透气减震运动鞋</td><td>299元</td>
+    </tr>
+    <tr>
+        <td>1</td><td>10045900</td><td>Niket透气减震运动鞋</td><td>299元</td>
+    </tr>
+</table>
+</body>
+</html>
+<script>
+
+    $("#mytable tr:even").css("background-color","gray")
+    console.log($("#mytable tr:odd"))
+</script>

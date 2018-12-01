@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title></title>
+    <meta name="Author" content="shuke">
+    <meta name="Keywords" content="">
+    <meta name="Description" content="">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <link rel="stylesheet" href="../ext.css">
+    <script src="../ext_test.js"></script>
+    <script src="../jquery-3.3.1.min.js"></script>
+    <style>
+        .sk-yellow{
+            background-color: yellow;
+        }
+        .sk-qing{
+            background: #66ffff;
+        }
+    </style>
+</head>
+<body>
+<dl>
+<dd class="x5">
+
+    <table id="sktable" class="table table-bordered">
+        <h2>表格操作</h2>
+
+    </table>
+</dd>
+</dl>
+</body>
+</html>
+<script>
+
+    var myrow=10;
+    var otable=$$("#sktable");
+    otable.innerHTML="<tr class=\"sk-yellow\"><td><label><input type=\"checkbox\" name=\"\" id=\"quanxuan\">全选</label></td><td>复选框示例</td><td></td><td></td></tr>"
+    for(var i=0;i<myrow;i++){
+        var tr=otable.insertRow();
+        for(var j=0;j<4;j++){
+            var td=tr.insertCell();
+            td.innerHTML="checkbox";
+            switch (j){
+                case 0:
+                    td.innerHTML="<label><input type='checkbox' class='c-item' onchange='qxjc()'>"+(i+1)+"</label>";
+                    break;
+                case 1:
+                    td.innerHTML="<a href='#'><span class='jianhao' onclick='jian("+i+")'>-</span></a>" +
+                        "<input type='text' class='num' value='1' size='3'>" +
+                        "<a href='#'><span class='jiahao' onclick='jia("+i+")\'>+</span></a>";
+                    break;
+                default:
+                    td.innerHTML=(i+1)+","+(j+1);
+            }
+        }
+    }
+    otable.innerHTML+="<tr class='sk-qing'><td><input type='checkbox' id='fanxuan'>反选</td><td><input type='text' value='0' id='sum' size='4'></td><td><button onclick='zongji()'>总计</button></td><td></td></tr>";
+    // console.log($$(".c-item"))
+    var oitem=$$(".c-item");
+    $$("#quanxuan").onclick=function () {
+
+            for(var i=0;i<oitem.length;i++){
+                oitem[i].checked=$$("#quanxuan").checked;
+            }
+
+    };
+    $$("#fanxuan").onclick=function () {
+
+        for(var i=0;i<oitem.length;i++){
+            oitem[i].checked=!oitem[i].checked;
+            // if(oitem[i].checked){
+            //     oitem[i].checked=false
+            // }else {
+            //     oitem[i].checked=true
+            // }
+
+        }
+        qxjc();
+    };
+    function qxjc() {
+        var tmp=true;
+        for(var i=0;i<oitem.length;i++) {
+            if(oitem[i].checked==false){
+                tmp=false;
+                break;
+            }
+        }
+
+            $$("#quanxuan").checked=tmp;
+
+    }
+    // var jiahao=$$(".jiahao");
+    // var jianhao=$$(".jianhao");
+    var num=$$(".num");
+    // console.log(num[1].value)
+    // for(var i=0;i<myrow;i++){
+    //     // console.log(jiahao[i],num[i])
+    //     jiahao[i].onclick=function () {
+    //         // console.log(num[i].value)
+    //     }
+    // }
+    function jia(index) {
+        num[index].value++;
+    }function jian(index) {
+        if(num[index].value>1){
+            num[index].value--;
+        }
+    }
+    var sum=0;
+    for(var i=0;i<myrow;i++){
+        sum+=parseInt(num[i].value);
+
+    }
+    $$("#sum").value=sum;
+    function zongji() {
+        sum=0;
+        for(var i=0;i<myrow;i++){
+            sum+=parseInt(num[i].value);
+
+        }
+        console.log(sum);
+        $$("#sum").value=sum;
+    }
+
+
+
+
+</script>

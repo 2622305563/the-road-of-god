@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title></title>
+    <meta name="Author" content="shuke">
+    <meta name="Keywords" content="">
+    <meta name="Description" content="">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <link rel="stylesheet" href="../ext.css">
+    <script src="../ext_test.js"></script>
+</head>
+<body>
+<canvas width="200" height="300"></canvas>
+</body>
+</html>
+<script>
+
+    //现在到2020年10月1日的倒计时
+    // var str="nasd,asd,sad,as,dad,dddd";
+    // str=str.split(",");
+    // console.log(str,typeof(str))
+
+    var sktime=new Date();
+    var yearr=sktime.getFullYear();
+    var mon=sktime.getMonth()+1;// 月份从0开始
+    var d=sktime.getDate();  //日
+    var h=sktime.getHours();
+    var minu=sktime.getMinutes();
+    var s=sktime.getSeconds();
+    var w=sktime.getDay();  //每一周的周日是第一天  从0开始
+    if(w==0){
+        w="星期日";
+    }if(w==1){
+        w="星期一";
+    }if(w==2){
+        w="星期二";
+    }if(w==3){
+        w="期三";
+    }if(w==4){
+        w="星期四";
+    }if(w==5){
+        w="星期五";
+    }if(w==6){
+        w="星期六";
+    }
+    document.write(yearr+"年",mon+"月",d+"日",h+"小时",minu+"分钟",s+"秒",w);
+    var f=setInterval(function(){
+        s--;
+    },1000);
+
+
+    // console.log(sktime)
+</script>

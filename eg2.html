@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="zh-cn">
+<head>
+    <meta charset="UTF-8">
+    <title>AJAX练习</title>
+    <meta name="Author" content="shuke">
+    <meta name="Keywords" content="">
+    <meta name="Description" content="">
+    <link rel="stylesheet" href="../../source/css/ext.css">
+    <style>
+        .userinfo{display: none}
+    </style>
+</head>
+<body>
+<div class="container">
+    <dl class="padding">
+        <dt>用户登录判断</dt>
+        <dd>
+            <div id="login">
+                <input type="text" name="skname" id="skname" placeholder="请输入姓名">
+                <span id="sknameinfo" class="text-red"></span><br>
+
+                <input type="text" name="skage" id="skage" placeholder="请输入年龄"> <br>
+                <button type="button" id="send">提交</button>
+            </div>
+
+            <div id="userinfo" class="userinfo">
+                <span id="name">name...</span>
+                <span id="age">age...</span>
+            </div>
+        </dd>
+    </dl>
+</div>
+</body>
+</html>
+<script>
+ var osend=document.getElementById("send")
+ var oskname=document.getElementById("skname")
+ var oskage=document.getElementById("skage")
+ var oname=document.getElementById("name")
+ var oage=document.getElementById("age")
+ var ouserinfo=document.getElementById("userinfo")
+ var ologin=document.getElementById("login")
+
+ osend.onclick=function () {
+     var xmlhttp
+     //兼容性处理，创建一个异步请求
+     if(window.ActiveXObject){
+         xmlhttp=new ActiveXObject("Microsoft.XMLHTTP")
+     }else {
+         xmlhttp=new XMLHttpRequest()
+     }
+
+     var url="http://www.coolneng.com/form/?skname="+oskname.value+"&skage="+oskage.value
+     xmlhttp.open("GET",url)
+     xmlhttp.setRequestHeader("content-Type","application/x-www-form-urlencoded")
+     xmlhttp.send(null)
+     xmlhttp.onreadystatechange=function () {
+         console.log(xmlhttp.readyState)
+         console.log(xmlhttp.status)
+         if(xmlhttp.readyState==4 && xmlhttp.status==200){
+             //返回数据
+             console.log(xmlhttp.responseText,typeof (xmlhttp.responseText))
+             //转换为OBJECT类型的的数据 []{}
+             console.log(JSON.parse(xmlhttp.responseText))
+             var obj=JSON.parse(xmlhttp.responseText)
+             if(obj.content.skname=="shuke"){
+                 console.log("用户信息")
+                 oname.innerHTML=obj.content.skname
+                 oage.innerHTML=obj.content.skage
+                 ologin.style.display="none"
+                 ouserinfo.style.display="block"
+             }else {
+                 document.getElementById("sknameinfo").innerHTML="没有找到该用户请重新输入！"
+             }
+         }
+     }
+ }
+</script>

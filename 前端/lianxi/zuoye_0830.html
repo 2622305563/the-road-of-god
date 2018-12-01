@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>购物车</title>
+    <meta name="Author" content="">
+    <meta name="Keywords" content="">
+    <meta name="Description" content="">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <link rel="stylesheet" href="../ext.css">
+    <script src="../ext_test.js"></script>
+    <style>
+
+    </style>
+</head>
+<body>
+    <table id="otable" class="table table-bordered"></table>
+    <div class="padding">
+        <input type="button" value="全删" onclick="shanchu()">
+        <input type="button" value="增加一行" onclick="zengjia()">总计：$
+        <span id="allmoney">0</span>
+        <div class="clear"></div>
+    </div>
+</body>
+</html>
+<script>
+    var prolist=[
+        {pro:"植物活力1",pic:"images/1.jpg",price:"2000.50"},
+        {pro:"植物活力2",pic:"images/2.jpg",price:"2100.50"},
+        {pro:"植物活力3",pic:"images/3.jpg",price:"2000.50"},
+        {pro:"植物活力4",pic:"images/4.jpg",price:"2000.50"}
+    ];
+    var otable=$$("#otable");
+    var otr,okpnum,oknum,okmoney,okquanxuan,okfanxuan;
+    //渲染表格
+    function initTable(){
+        otable.innerHTML="<tr><th><label><input type='checkbox' id='quanxuan' onclick='quanxuan()'>全选</label></th><th>商品图片</th><th>数量</th><th>单价</th><th>商品名称</th><th>小计</th><th>操作</th></tr>";
+        for(var i=0;i<prolist.length;i++){
+            var tr=otable.insertRow();
+            for(var j=0;j<7;j++){
+                var td=tr.insertCell();
+                switch (j){
+                    case 0:
+                        td.innerHTML="<label><input type='checkbox' class='kpnum' name='chanpin[]' value='' onchange='qxjc()'></label>";
+                        break;
+                    case 1:
+                        td.innerHTML="<img src='"+prolist[i].pic+"' height='30'/>";
+                        break;
+
+                    case 2:
+                        td.innerHTML="<button class='jianhao' onclick='jian("+i+")'>-</button>" +
+                            "<input type='text' class='knum' value='1' size='3'>" +
+                            "<button class='jiahao' onclick='jia("+i+")'>+</button>";
+                        break;
+                    case 3:
+                        td.innerHTML="$<span>"+prolist[i].price+"</span>";
+                        break;
+                    case 4:
+                        td.innerHTML="<span>"+prolist[i].pro+"</span>";
+                        break;
+                    case 5:
+                        td.innerHTML="$<span class='kmoney'>"+prolist[i].price+"</span>";
+                        break;
+                    case 6:
+                        td.innerHTML="<button type='button' onclick='delitem("+i+")'>删除</button>";
+                        break;
+                }
+            }
+        }
+        otr=otable.rows;
+        okpnum=otable.getElementsByClassName("kpnum");
+        okmoney=otable.getElementsByClassName("kmoney");
+        oknum=otable.getElementsByClassName("knum");
+        okquanxuan=$$("#quanxuan");
+    }
+    initTable();
+    //全选
+    function quanxuan(){
+        for(var i=0;i<okpnum.length;i++){
+            okpnum[i].checked=okquanxuan.checked
+        }
+        listendata();
+    }
+    //全选监听事件
+    function qxjc() {
+        var tmp=true;
+        for(var i=0;i<okpnum.length;i++) {
+            if(okpnum[i].checked==false){
+                tmp=false;
+                break;
+            }
+        }
+        okquanxuan.checked=tmp;
+        listendata();
+    }
+    //加
+    function jia(index) {
+        oknum[index].value++;
+        listendata();
+    }
+    //减
+    function jian(index) {
+        if(oknum[index].value>1){
+            oknum[index].value--;
+        }
+        listendata();
+    }
+    //小计 总计
+    function listendata() {
+        var knum=0;
+        for(var i=(okpnum.length-1);i>=0;i--) {
+            if(okpnum[i].checked==true){
+                knum+=oknum[i].value * prolist[i].price;
+            }
+            okmoney[i].innerHTML=oknum[i].value * prolist[i].price
+        }
+        $$("#allmoney").innerHTML=knum
+    }
+    //删除
+    function delitem(num) {
+        prolist.splice(num,1);
+        initTable();
+    }
+    //删除选中
+    function shanchu() {
+        for(var i=(okpnum.length-1);i>=0;i--) {
+            if(okpnum[i].checked==true){
+                prolist.splice(i,1)
+            }
+        }
+        initTable();
+        listendata();
+    }
+    //增加数据
+    function zengjia() {
+        var prodata={pro:"植物活力5",pic:"images/4.jpg",price:"2000.50"};
+        prolist.push(prodata);
+        initTable();
+    }
+
+</script>

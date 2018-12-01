@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title></title>
+    <meta name="Author" content="shuke">
+    <meta name="Keywords" content="">
+    <meta name="Description" content="">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <link rel="stylesheet" href="../ext.css">
+    <script src="../ext_test.js"></script>
+</head>
+<body>
+
+</body>
+</html>
+<script>
+    var arrayPairSum = function(nums) {
+        var num=[];
+        var temp=[];
+        for(var i=0;i<nums.length;i++){
+            for(var j=i+1;j<nums.length;j++){
+                num.push(nums[i],nums[j]);
+                if(nums[i]<nums[j]){
+                    temp.push(nums[i]);
+                }else{
+                    temp.push(nums[j]);
+                }
+            }
+
+        }
+        alert(temp)
+
+    };
+    var result=arrayPairSum([1,7,6,11])
+</script>

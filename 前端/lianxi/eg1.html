@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title></title>
+    <meta name="Author" content="shuke">
+    <meta name="Keywords" content="">
+    <meta name="Description" content="">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <link rel="stylesheet" href="../ext.css">
+    <script src="../ext_test.js"></script>
+</head>
+<body>
+<div>aaa</div>
+</body>
+</html>
+<script>
+
+    // document.getElementById("id")
+    // document.getElementsByClassName("class")
+    //上面获取的数据不是一致的；
+    //id  在页面中是唯一的，所以获取的是一个元素
+    //class 获取的是一个元素的集合（数组）内
+    $$("div")[0].innerHTML="bbb";
+</script>

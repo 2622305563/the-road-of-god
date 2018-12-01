@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title></title>
+    <meta name="Author" content="shuke">
+    <meta name="Keywords" content="">
+    <meta name="Description" content="">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <link rel="stylesheet" href="../ext.css">
+    <script src="../ext_test.js"></script>
+    <script src="../jquery-3.3.1.min.js"></script>
+    <style>
+        .border{
+            width: 400px;
+            height: 300px;
+            border: 3px solid #ddd;
+            margin: 0px auto;
+            margin-top: 100px;
+        }
+        #biaoti{
+            width: 400px;
+            height: 40px;
+            background-color: #22cc77;
+            font-weight: bolder;
+            font-size: 16px;
+            color: #ffffff;
+            text-align: center;
+            line-height: 40px;
+        }
+    </style>
+</head>
+<body>
+
+<div class="border">
+    <div id="biaoti">POWERED BY STRUTS SPRING HIBERNATE</div>
+    <div style="margin-left: 40px">
+        <div>用户注册</div><br>
+        <hr width="70%"><br>
+        <label style="display: inline-block;width: 80px">用户名：</label><input type="text" name="kname" id="kname" placeholder="请输入用户名" style="width: 160px"><span id="namespan" style="color: red"></span><br>
+        <label style="display: inline-block;width: 80px">密码：</label><input type="text" name="kpassword" id="kpassword" placeholder="请输入密码" style="width: 160px"><span id="wordspan" style="color: red"></span><br>
+        <label style="display: inline-block;width: 80px">重复密码：</label><input type="text" name="kpassword" id="krepassword" placeholder="请输入密码" style="width: 160px"><span id="rewordspan" style="color: red"></span><br><br>
+        <input type="button" id="zhuce" onclick="getuserinfo()" value="注册" style="width: 40px">
+        <input type="button" id="chongzhi" onclick="resetuserinfo()" value="重置"  style="width: 40px;margin-left: 20px">
+    </div>
+
+</div>
+</body>
+</html>
+<script>
+    var okname=$$("#kname")
+    var okpassword=$$("#kpassword")
+    var okrepassword=$$("#krepassword")
+    var oknamespan=$$("#namespan")
+    var okwordspan=$$("#wordspan")
+    var okrewordspan=$$("#rewordspan")
+    function getuserinfo() {
+        //ajax兼容写法
+        var xmlhttp
+        //兼容性处理，创建一个异步请求
+        if(window.ActiveXObject){
+            xmlhttp=new ActiveXObject("Microsoft.XMLHTTP")
+        }else {
+            xmlhttp=new XMLHttpRequest()
+        }
+        console.log(xmlhttp)
+
+        //服务器数据的处理 (接口, xml,json)
+        var url="http://www.coolneng.com/form/?name=susan&password=123"
+
+        //打开请求
+        xmlhttp.open("GET",url)
+
+        //请求头部
+        xmlhttp.setRequestHeader("content-Type","application/x-www-form-urlencoded")
+
+        //发送请求
+        xmlhttp.send(null)
+
+        //监听事件,AJAX请求状态的改变
+        /*xmlhttp.readyState
+        * 0,请求初始化
+        * 1，与服务器连接建立
+        * 2，请求已经接收
+        * 3，请求处理中
+        * 4，请求已经完成，响应已经就绪
+        * */
+        xmlhttp.onreadystatechange=function () {
+            console.log(xmlhttp.readyState)
+            console.log(xmlhttp.status)
+            if(xmlhttp.readyState==4 && xmlhttp.status==200){
+                //返回数据
+                console.log(xmlhttp.responseText,typeof (xmlhttp.responseText))
+                //转换为OBJECT类型的的数据 []{}
+                console.log(JSON.parse(xmlhttp.responseText))
+                var obj=JSON.parse(xmlhttp.responseText)
+                if(okname.value==""){
+                    oknamespan.innerHTML="用户名不能为空"
+                }else if(okpassword.value==""){
+                    oknamespan.innerHTML=""
+                    okwordspan.innerHTML="密码不能为空"
+                }
+                else {
+                    okwordspan.innerHTML=""
+                    if(okname.value==obj.content.name){
+                        oknamespan.innerHTML="用户名已存在"
+                    }else {
+                        obj.content.name="okname.value"
+                        oknamespan.innerHTML=""
+                        if(okrepassword.value==okpassword.value){
+                            obj.content.password=okpassword.value
+                            alert("注册成功")
+                            okrewordspan.innerHTML=""
+
+                        }else {
+                            okrewordspan.innerHTML="密码不一致"
+                        }
+                    }
+                }
+
+                // //输出到页面中
+                // oskname.innerHTML=obj.content.name
+                // osktime.innerHTML=obj.content.sktime
+                //
+                // //显示信息
+                // document.getElementsByClassName("userinfo")[0].style.display="block"
+                // //隐藏登录框
+                // document.getElementsByClassName("login")[0].style.display="none"
+            }
+        }
+    }
+    function resetuserinfo() {
+        okname.value=""
+        okpassword.value=""
+        okrepassword.value=""
+    }
+
+
+</script>
+
+
+
+
+
+
+
+
+
+

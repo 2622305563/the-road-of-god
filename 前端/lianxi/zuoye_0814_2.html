@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title></title>
+    <meta name="Author" content="shuke">
+    <meta name="Keywords" content="">
+    <meta name="Description" content="">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <link rel="stylesheet" href="../ext.css">
+    <script src="../ext_test.js"></script>
+    <script src="../jquery-3.3.1.min.js"></script>
+    <style>
+        img{
+            width: 500px;
+            height: 300px;
+           position: absolute;
+        }
+        ul{
+            position: absolute;
+            left: 100px;
+            top: 20px;
+            z-index: 4;
+        }
+        ul li{
+            width: 30px;
+            height: 30px;
+            list-style: none;
+            float: left;
+            border: 1px solid red;
+            font-size: 18px;
+            font-weight: bolder;
+            margin-left: 20px;
+            text-align: center;
+        }
+    </style>
+</head>
+<body>
+<img src="images/3bd1a069c21f30606fefcfcae0ed03db.jpg" id="img1">
+<img src="images/5a3c0bf1e73c4acb556008257e6dacc8.jpg" id="img2">
+<img src="images/469c2b51b0c4951691f6d730cca5ace7.jpg" id="img3">
+<ul id="Ul">
+    <a href="#"><li id="li1">1</li></a>
+    <a href="#"><li id="li2">2</li></a>
+    <a href="#"><li id="li3">3</li></a>
+</ul>
+</body>
+</html>
+<script>
+
+    window.onload=function() {
+
+        var timerIsStart = false;
+
+        var img1=document.getElementById("img1");
+        var img2=document.getElementById("img2");
+        var img3=document.getElementById("img3");
+        var li1=document.getElementById("li1");
+        var li2=document.getElementById("li2");
+        var li3=document.getElementById("li3");
+        var Ul=document.getElementById("Ul")
+        var i=0;
+        function ff1(){
+            var t=setInterval(function (){
+                luobo();
+            },2000);
+            function luobo(){
+                if(i==0){
+                    img1.style.display="block"
+                    img2.style.display="none"
+                    img3.style.display="none"
+                }
+                if(i==1){
+                    img1.style.display="none"
+                    img2.style.display="block"
+                    img3.style.display="none"
+                }
+                if(i==2) {
+                    img1.style.display="none"
+                    img2.style.display="none"
+                    img3.style.display="block"
+                }
+                i++;
+                if(i>2){
+                    i=0;
+                }
+            }
+            function mouOver(){
+                li1.onmouseover=function (){
+                    img1.style.display="block"
+                    img2.style.display="none"
+                    img3.style.display="none"
+                }
+                li2.onmouseover=function (){
+                    img1.style.display="none"
+                    img2.style.display="block"
+                    img3.style.display="none"
+                }
+                li3.onmouseover=function (){
+                    img1.style.display="none"
+                    img2.style.display="none"
+                    img3.style.display="block"
+                }
+            }
+            Ul.onmouseover=function (){
+                clearInterval(t);
+                mouOver();
+
+            }
+            Ul.onmouseout=function (){
+                ff1();
+            };
+
+        }
+        ff1();
+
+
+    }
+</script>
